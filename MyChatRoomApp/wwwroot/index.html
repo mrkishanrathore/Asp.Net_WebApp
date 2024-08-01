@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .chat-container {
+            max-width: 500px;
+            margin: auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .messages {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 300px;
+            overflow-y: scroll;
+        }
+
+        .message {
+            margin: 10px 0;
+        }
+
+        .input-container {
+            display: flex;
+        }
+
+            .input-container input {
+                flex: 1;
+                padding: 10px;
+            }
+
+            .input-container button {
+                padding: 10px;
+            }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="messages" id="messages"></div>
+        <div class="input-container">
+            <input type="text" id="messageInput" placeholder="Type your message here..." />
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <script>
+        let ws = new WebSocket("wss://localhost:7029/ws"); // Adjust the URL as needed
+
+        ws.onopen = () => {
+            console.log("Connected to WebSocket server");
+        };
+
+        ws.onmessage = (event) => {
+            const messagesDiv = document.getElementById("messages");
+            const message = document.createElement("div");
+            message.className = "message";
+            message.textContent = event.data;
+            messagesDiv.appendChild(message);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        };
+
+        ws.onclose = () => {
+            console.log("Disconnected from WebSocket server");
+            setTimeout(connect, 1000); // Attempt to reconnect every 1 second
+        };
+
+        function sendMessage() {
+            const input = document.getElementById("messageInput");
+            if (input.value) {
+                ws.send(input.value);
+                input.value = "";
+            }
+        }
+
+        function connect() {
+            ws = new WebSocket("ws://localhost:7029/ws");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\abc\\source\\repos\\MyChatRoomApp\\MyChatRoomApp\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.MyChatRoomApp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.MyChatRoomApp.props",
+      "PackagePath": "build\\MyChatRoomApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.MyChatRoomApp.props",
+      "PackagePath": "buildMultiTargeting\\MyChatRoomApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.MyChatRoomApp.props",
+      "PackagePath": "buildTransitive\\MyChatRoomApp.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
